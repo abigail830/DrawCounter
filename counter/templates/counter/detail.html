@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WalkGhost Membership</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'counter/mystyle.css' %}" />
+</head>
+<body>
+<h1 class="center">{{ name }}</h1>
+<h3 class="center">Join us since {{ join_date }}</h3>
+<p class="center grey">Remark: {{remark}}</p>
+
+{% if history %}
+    <table class="table center">
+    {% for visit in history %}
+        <tr>
+            <td class="left">
+                <div>{{ visit.last_update_date }}</div>
+                <div class="grey">{{ visit.remark}}</div>
+            </td>
+            <td class="right">
+                <div>{{visit.available_count}}</div>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No members are available.</p>
+{% endif %}
+
+</body>
+</html>

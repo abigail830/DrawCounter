@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WalkGhost Membership</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'counter/mystyle.css' %}" />
+</head>
+<body>
+<h1 class="center">WalkGhost Membership</h1>
+{% if summary %}
+    <table class="table center">
+    {% for member_detail in summary %}
+        <tr>
+            <td class="left">
+                <a href="{% url 'detail' member_detail.id  %}">
+                <div>
+                    {{ member_detail.member_name }}
+                    <div class="grey">Remark: {{ member_detail.remark }}</div>
+                </div>
+                </a>
+            </td>
+            <td class="right">
+                <div>{{member_detail.count.available_count}} times @ {{member_detail.count.last_update_date}}</div>
+            </td>
+
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No members are available.</p>
+{% endif %}
+
+</body>
+</html>
